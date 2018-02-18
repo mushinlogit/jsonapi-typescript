@@ -14,8 +14,8 @@ export interface DocWithMeta extends DocBase {
 	meta: MetaObject; // a meta object that contains non-standard meta-information.
 }
 
-export interface DocWithData extends DocBase {
-	data: PrimaryData; // the document’s “primary data”
+export interface DocWithData<T = AttributesObject> extends DocBase {
+	data: PrimaryData<T>; // the document’s “primary data”
 	included?: Included;
 }
 
@@ -74,16 +74,16 @@ export interface ErrorObject {
 	meta?: MetaObject;
 }
 
-export type PrimaryData = SinglePrimaryData | CollectionPrimaryData;
+export type PrimaryData<T> = SinglePrimaryData<T> | CollectionPrimaryData<T>;
 
-export type SinglePrimaryData =
+export type SinglePrimaryData<T> =
 	| null
-	| ResourceObject
+	| ResourceObject<T>
 	| ResourceIdentifierObject;
 
-export type CollectionPrimaryData =
+export type CollectionPrimaryData<T> =
 	| never[]
-	| ResourceObject[]
+	| Array<ResourceObject<T>>
 	| ResourceIdentifierObject[];
 
 export interface ResourceObject<T = AttributesObject> {

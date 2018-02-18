@@ -9,40 +9,6 @@ import * as JSONAPI from '../../index';
 	'Top-Level Document Tests: A JSON object MUST be at the root of every JSON API request and response containing data.'
 )
 class TopLevelDocument {
-	@test('string is not a top-level document')
-	async stringNotADocument() {
-		await assertTsThrows(
-			join(__dirname, 'examples/only-string.ts'),
-			/is not assignable to type 'Document'/,
-			'string is not a valid top-level document'
-		);
-	}
-
-	@test('boolean is not a top-level document')
-	async booleanNotADocument() {
-		await assertTsThrows(
-			join(__dirname, 'examples/only-boolean.ts'),
-			/is not assignable to type 'Document'/,
-			'boolean is not a valid top-level document'
-		);
-	}
-
-	@test('number is not a top-level document')
-	async numberNotADocument() {
-		await assertTsThrows(
-			join(__dirname, 'examples/only-number.ts'),
-			/is not assignable to type 'Document'/,
-			'number is not a valid top-level document'
-		);
-	}
-	@test('only having a "jsonapi" property is not a top-level document')
-	async onlyJsonApiInfo() {
-		await assertTsThrows(
-			join(__dirname, 'examples/only-jsonapi.ts'),
-			/is not assignable to type 'Document'/,
-			'having the "jsonapi" property is not enough to be a valid top-level document'
-		);
-	}
 	@test('A few examples of valid documents')
 	validEmptyDocuments() {
 		let doc: JSONAPI.Document;
