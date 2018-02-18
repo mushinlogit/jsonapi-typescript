@@ -86,10 +86,10 @@ export type CollectionPrimaryData =
 	| ResourceObject[]
 	| ResourceIdentifierObject[];
 
-export interface ResourceObject {
+export interface ResourceObject<T = AttributesObject> {
 	id?: string;
 	type: string;
-	attributes?: AttributesObject;
+	attributes?: T;
 	relationships?: RelationshipsObject;
 	links?: Links;
 	meta?: MetaObject;
@@ -124,12 +124,11 @@ export type RelationshipObject =
 	| RelationshipsWithLinks
 	| RelationshipsWithMeta;
 
-export interface RelationshipsObject {
-	[k: string]: RelationshipObject;
-}
+export interface RelationshipsObject extends Dictionary<RelationshipObject> { }
 
-export interface AttributesObject {
-	[k: string]: JSON.Value;
-}
+export interface AttributesObject extends Dictionary<JSON.Value> { }
 
+export interface Dictionary<T = string> {
+	[k: string]: T;
+}
 export type Errors = ErrorObject[];
